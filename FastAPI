@@ -1,0 +1,23 @@
+from fastapi import FastAPI
+
+app = FastAPI()
+# Имя и возраст пользователя
+@app.get("/username")
+async def username(username: str, age: int) -> dict:
+    return {"User": username, "Age": age}
+# ИД пользователя
+@app.get("/users/{user_id}")
+async def id_user(user_id: int) -> dict:
+    return {"user_id": f"Вы вошли как пользователь №  {user_id}"}
+# Welcome page
+@app.get("/")
+async def welcome () -> dict:
+    return {"message": "Привет"}
+# Главная страница
+@app.get("/main")
+async def main_page () -> dict:
+    return {"message": "Главная страница"}
+# Админовская панель
+@app.get("/user/admin")
+async def admin () -> dict:
+    return {"message": "Вы вошли как администратор"}
